@@ -9,25 +9,57 @@ const navLinks = [
 
 /* ---------- Icons ---------- */
 const SearchIcon = ({ className }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-4.35-4.35M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m21 21-4.35-4.35M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z"
+    />
   </svg>
 );
 
 const CartIcon = ({ className }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l3-8H5.4M7 13 5.4 5M7 13l-2.3 4.6A1 1 0 0 0 5.6 19H19M9 22a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3 3h2l.4 2M7 13h10l3-8H5.4M7 13 5.4 5M7 13l-2.3 4.6A1 1 0 0 0 5.6 19H19M9 22a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+    />
   </svg>
 );
 
 const MenuIcon = ({ className }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
     <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
   </svg>
 );
 
 const CloseIcon = ({ className }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
     <path strokeLinecap="round" d="M6 6l12 12M18 6 6 18" />
   </svg>
 );
@@ -42,18 +74,20 @@ const Navbar = () => {
     e.preventDefault();
     if (!search.trim()) return;
     console.log("Searching for:", search);
-    // navigate(`/search?q=${search}`);
     setIsOpen(false);
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/90 backdrop-blur">
+    // FIXED: Changed 'sticky' to 'fixed' and added left-0 right-0 to span the whole screen
+    <header className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-gray-200 bg-white/90 backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        
         {/* Left Side: Store Name & Desktop Links */}
         <div className="flex items-center gap-6 lg:gap-8">
           {/* Store Name */}
-          <a href="#home" className="text-xl font-extrabold tracking-tight text-gray-900 transition hover:text-indigo-600">
+          <a
+            href="#home"
+            className="text-xl font-extrabold tracking-tight text-gray-900 transition hover:text-indigo-600"
+          >
             Store
           </a>
 
@@ -74,9 +108,11 @@ const Navbar = () => {
 
         {/* Right Side: Search, Cart, Mobile Menu */}
         <div className="flex flex-1 items-center justify-end gap-2 md:gap-4">
-          
           {/* Desktop Search */}
-          <form onSubmit={handleSearch} className="hidden flex-1 justify-end lg:flex">
+          <form
+            onSubmit={handleSearch}
+            className="hidden flex-1 justify-end lg:flex"
+          >
             <div className="relative w-full max-w-xs">
               <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
               <input
@@ -111,7 +147,11 @@ const Navbar = () => {
             aria-expanded={isOpen}
             className="rounded-lg p-2 text-gray-600 transition hover:bg-gray-100 md:hidden"
           >
-            {isOpen ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+            {isOpen ? (
+              <CloseIcon className="h-6 w-6" />
+            ) : (
+              <MenuIcon className="h-6 w-6" />
+            )}
           </button>
         </div>
       </nav>
