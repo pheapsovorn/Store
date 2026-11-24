@@ -8,35 +8,9 @@ const navLinks = [
 ];
 
 /* ---------- Icons ---------- */
-const SearchIcon = ({ className }) => (
-  <svg
-    className={className}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="m21 21-4.35-4.35M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z"
-    />
-  </svg>
-);
-
-const CartIcon = ({ className }) => (
-  <svg
-    className={className}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M3 3h2l.4 2M7 13h10l3-8H5.4M7 13 5.4 5M7 13l-2.3 4.6A1 1 0 0 0 5.6 19H19M9 22a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-    />
+const TelegramIcon = ({ className }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
   </svg>
 );
 
@@ -67,28 +41,22 @@ const CloseIcon = ({ className }) => (
 /* ---------- Navbar ---------- */
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const cartCount = 3; // TODO: connect to your cart state
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (!search.trim()) return;
-    console.log("Searching for:", search);
-    setIsOpen(false);
-  };
 
   return (
-    // FIXED: Changed 'sticky' to 'fixed' and added left-0 right-0 to span the whole screen
     <header className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-gray-200 bg-white/90 backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        {/* Left Side: Store Name & Desktop Links */}
+        {/* Left Side: Store Logo & Desktop Links */}
         <div className="flex items-center gap-6 lg:gap-8">
-          {/* Store Name */}
+          {/* Logo Image */}
           <a
             href="#home"
-            className="text-xl font-extrabold tracking-tight text-gray-900 transition hover:text-indigo-600"
+            className="flex shrink-0 items-center transition hover:opacity-80"
           >
-            Store
+            <img
+              src="/Black Store.png"
+              alt="Store Logo"
+              className="h-10 w-auto object-contain md:h-12"
+            />
           </a>
 
           {/* Desktop Links */}
@@ -106,38 +74,31 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Right Side: Search, Cart, Mobile Menu */}
-        <div className="flex flex-1 items-center justify-end gap-2 md:gap-4">
-          {/* Desktop Search */}
-          <form
-            onSubmit={handleSearch}
-            className="hidden flex-1 justify-end lg:flex"
+        {/* Right Side: Telegram, Gmail, Mobile Menu */}
+        <div className="flex items-center justify-end gap-3 md:gap-4">
+          {/* Telegram Link */}
+          <a
+            href="https://t.me/pheapsovorn"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Telegram"
+            className="rounded-full p-2 text-gray-600 transition hover:bg-sky-50 hover:text-sky-500"
           >
-            <div className="relative w-full max-w-xs">
-              <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-              <input
-                type="search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search products..."
-                className="w-full rounded-full border border-gray-200 bg-gray-50 py-2 pl-9 pr-4 text-sm text-gray-700 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-100"
-              />
-            </div>
-          </form>
+            <TelegramIcon className="h-5 w-5" />
+          </a>
 
-          {/* Cart */}
-          <button
-            type="button"
-            aria-label="Cart"
-            className="relative rounded-full p-2 text-gray-600 transition hover:bg-gray-100 hover:text-indigo-600"
+          {/* Gmail Link - Replaced with your uploaded image */}
+          <a
+            href="mailto:pheapsovorn@email.com"
+            aria-label="Email"
+            className="rounded-full p-1.5 transition hover:bg-gray-100"
           >
-            <CartIcon className="h-5 w-5" />
-            {cartCount > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 grid h-5 w-5 place-items-center rounded-full bg-amber-500 text-[11px] font-bold text-white">
-                {cartCount}
-              </span>
-            )}
-          </button>
+            <img
+              src="/gmail.png"
+              alt="Gmail"
+              className="h-5 w-5 object-contain"
+            />
+          </a>
 
           {/* Mobile Hamburger */}
           <button
@@ -162,19 +123,6 @@ const Navbar = () => {
           isOpen ? "max-h-96" : "max-h-0"
         }`}
       >
-        <form onSubmit={handleSearch} className="px-4 pt-3">
-          <div className="relative">
-            <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-            <input
-              type="search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search products..."
-              className="w-full rounded-full border border-gray-200 bg-gray-50 py-2 pl-9 pr-4 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-100"
-            />
-          </div>
-        </form>
-
         <ul className="space-y-1 px-3 py-3">
           {navLinks.map((link) => (
             <li key={link.name}>
